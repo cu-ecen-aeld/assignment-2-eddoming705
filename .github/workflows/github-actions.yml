@@ -38,5 +38,8 @@ jobs:
       - name: Make writer executable
         run: chmod +x finder-app/writer
 
-      - name: Run full test
-        run: ./full-test.sh
+      - name: Run finder test
+        run: |
+          cd finder-app
+          chmod +x finder-test.sh
+          ./finder-test.sh
