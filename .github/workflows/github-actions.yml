@@ -13,8 +13,10 @@ jobs:
     container: cuaesd/aesd-autotest:24-unit-test
     steps:
       - uses: actions/checkout@v2
+
       - name: Checkout submodules
         run: git submodule update --init --recursive
+
       - name: Run unit test
         run: ./unit-test.sh
 
@@ -23,7 +25,18 @@ jobs:
     container: cuaesd/aesd-autotest:24-assignment2
     steps:
       - uses: actions/checkout@v2
+
       - name: Checkout submodules
         run: git submodule update --init --recursive
+
+      - name: Build writer
+        run: make
+
+      - name: Verify writer exists
+        run: ls -l finder-app/writer
+
+      - name: Make writer executable
+        run: chmod +x finder-app/writer
+
       - name: Run full test
         run: ./full-test.sh
